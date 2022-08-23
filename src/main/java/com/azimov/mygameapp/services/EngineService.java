@@ -51,20 +51,21 @@ public class EngineService {
     public List<Score> findScoreByGameUser(GameUser gameUser){
         return scoreRepository.findByGameUserScore(gameUser);
     }
-    public Pair<String, String> showGameUserScores(GameUser gameUser){
+    public Map<String, String> showGameUserScores(GameUser gameUser){
         List<Score> listOfScores = scoreRepository.findByGameUserScore(gameUser);
         double sumOfPlaces = 0;
         for (Score score : listOfScores){
             sumOfPlaces = sumOfPlaces + score.getPlace();
         }
         DecimalFormat dF = new DecimalFormat("#.##");
-        Pair<String, String> userScore = new Pair<>(gameUser.getUsername(),  dF.format(sumOfPlaces/listOfScores.size()));
+        Map<String, String> userScore = new HashMap<>();
+        userScore.put(gameUser.getUsername(),  dF.format(sumOfPlaces/listOfScores.size()));
         return userScore;
     }
     public List<Score> findScoreByPlayedGame(PlayedGame playedGame){
         return scoreRepository.findByOwner(playedGame);
     }
-    public Pair<String, String> showGameUserScoresByPlayedGame(GameUser gameUser, List<Score> scores){
+    public Map<String, String> showGameUserScoresByPlayedGame(GameUser gameUser, List<Score> scores){
 
         List<Score> finalScore = new ArrayList<>();
         for (Score score : scores){
@@ -84,7 +85,8 @@ public class EngineService {
         }
         DecimalFormat dF = new DecimalFormat("#.##");
 
-        Pair<String, String> userScore = new Pair<>(gameUser.getUsername(),  dF.format(sumOfPlaces1/finalScore.size()) );
+        Map<String, String> userScore = new HashMap<>();
+        userScore.put(gameUser.getUsername(),  dF.format(sumOfPlaces1/finalScore.size()) );
         return userScore;}
 
     public Game findGameByGameName(String name){
