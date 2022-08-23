@@ -8,7 +8,6 @@ import com.azimov.mygameapp.repositories.GameUserRepository;
 import com.azimov.mygameapp.repositories.GamesRepository;
 import com.azimov.mygameapp.repositories.PlayedGameRepository;
 import com.azimov.mygameapp.repositories.ScoreRepository;
-import javafx.util.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

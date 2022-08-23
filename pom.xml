@@ -60,11 +60,6 @@
             <scope>test</scope>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.openjfx/javafx-base -->
-        <dependency>
-            <groupId>org.openjfx</groupId>
-            <artifactId>javafx-base</artifactId>
-            <version>20-ea+1</version>
-        </dependency>
         <!-- https://mvnrepository.com/artifact/com.heroku.sdk/heroku-maven-plugin -->
         <dependency>
             <groupId>com.heroku.sdk</groupId>
@@ -79,6 +74,14 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>11</source>
+                    <target>11</target>
+                </configuration>
             </plugin>
         </plugins>
     </build>
