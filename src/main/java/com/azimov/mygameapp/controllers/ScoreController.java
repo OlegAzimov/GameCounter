@@ -32,18 +32,18 @@ public class ScoreController {
                             Model model4) {
         model4.addAttribute("games", engineService.findAllGames());
         List<GameUser> gameUsers = engineService.findAllGameUsers();
-        List<Map> gameUsersMap = new ArrayList<>();
+        Map<String, String> gameUsersMap = new HashMap<>();
         for (GameUser gu : gameUsers) {
-            gameUsersMap.add(engineService.showGameUserScores(gu));
+            gameUsersMap.put(engineService.showGameUserScores(gu).getKey(), engineService.showGameUserScores(gu).getValue());
 
         }
-//        Map<String, String> finalMap = new HashMap<>(gameUsersMap);
-//        List<Map.Entry<String, String>> entries = finalMap.entrySet()
-//                .stream()
-//                .sorted(Map.Entry.comparingByValue())
-//                .toList();
-//
-//        model2.addAttribute("gameUsersMapsList", entries);
+        Map<String, String> finalMap = new HashMap<>(gameUsersMap);
+        List<Map.Entry<String, String>> entries = finalMap.entrySet()
+                .stream()
+                .sorted(Map.Entry.comparingByValue())
+                .toList();
+
+        model2.addAttribute("gameUsersMapsList", entries);
 
 
         return "score_page";
@@ -69,23 +69,21 @@ public class ScoreController {
 
         }
         List<GameUser> gameUsers = engineService.findAllGameUsers();
-        List<Map> gameUsersMap = new ArrayList<>();
+        Map<String, String> gameUsersMap = new HashMap<>();
         for (GameUser gu : gameUsers) {
-
             if (engineService.showGameUserScoresByPlayedGame(gu, scores) != null)
-
-                gameUsersMap.add(engineService.showGameUserScoresByPlayedGame(gu, scores));
+                gameUsersMap.put(engineService.showGameUserScoresByPlayedGame(gu, scores).getKey(), (engineService.showGameUserScoresByPlayedGame(gu, scores).getValue()));
 
         }
-//        Map<String, String> finalMap = new HashMap<>(gameUsersMap);
-//        Map<String, String> sortedFinalMap = finalMap;
-//        List<Map.Entry<String, String>> entries = sortedFinalMap.entrySet()
-//                .stream()
-//                .sorted(Map.Entry.comparingByValue())
-//                .toList();
-//
-//
-//        model1.addAttribute("gameUsersMapsList", entries);
+        Map<String, String> finalMap = new HashMap<>(gameUsersMap);
+        Map<String, String> sortedFinalMap = finalMap;
+        List<Map.Entry<String, String>> entries = sortedFinalMap.entrySet()
+                .stream()
+                .sorted(Map.Entry.comparingByValue())
+                .toList();
+
+
+        model1.addAttribute("gameUsersMapsList", entries);
 
 
         return "score_page";
