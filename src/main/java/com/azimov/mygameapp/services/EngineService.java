@@ -64,32 +64,32 @@ public class EngineService {
     public List<Score> findScoreByPlayedGame(PlayedGame playedGame){
         return scoreRepository.findByOwner(playedGame);
     }
-//    public Pair<String, String> showGameUserScoresByPlayedGame(GameUser gameUser, List<Score> scores){
-//
-//        List<Score> finalScore = new ArrayList<>();
-//        for (Score score : scores){
-//            if(score.getGameUserScore().equals(gameUser)){
-//                finalScore.add(score);
-//            }
-//
-//        }
-//        double sumOfPlaces1 = 0;
-//        for (Score score : finalScore){
-//            sumOfPlaces1 = sumOfPlaces1 + score.getPlace();
-//        }
-//        if(sumOfPlaces1 == 0){
-//            return null;
-//
-//
-//        }
-//        DecimalFormat dF = new DecimalFormat("#.##");
-//
-//        Pair<String, String> userScore = new Pair<>(gameUser.getUsername(),  dF.format(sumOfPlaces1/finalScore.size()) );
-//        return userScore;}
-//
-//    public Game findGameByGameName(String name){
-//        return gamesRepository.findGameByGameName(name);
-//    }
+    public Pair<String, String> showGameUserScoresByPlayedGame(GameUser gameUser, List<Score> scores){
+
+        List<Score> finalScore = new ArrayList<>();
+        for (Score score : scores){
+            if(score.getGameUserScore().equals(gameUser)){
+                finalScore.add(score);
+            }
+
+        }
+        double sumOfPlaces1 = 0;
+        for (Score score : finalScore){
+            sumOfPlaces1 = sumOfPlaces1 + score.getPlace();
+        }
+        if(sumOfPlaces1 == 0){
+            return null;
+
+
+        }
+        DecimalFormat dF = new DecimalFormat("#.##");
+
+        Pair<String, String> userScore = new Pair<>(gameUser.getUsername(),  dF.format(sumOfPlaces1/finalScore.size()) );
+        return userScore;}
+
+    public Game findGameByGameName(String name){
+        return gamesRepository.findGameByGameName(name);
+    }
 
 
 

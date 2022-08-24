@@ -51,41 +51,41 @@ public class ScoreController {
 
     }
 
-//    @PostMapping("/filter")
-//    public String showScoreByPlayedGames(@RequestParam(value = "gameList", required = false) List<Game> games,
-//                                         Model model,
-//                                         Model model1) {
-//        if(games == null){
-//            return "redirect:/score_page";
-//        }
-//        model.addAttribute("games", engineService.findAllGames());
-//        List<PlayedGame> playedGames = new ArrayList<>();
-//        for (Game game : games) {
-//            playedGames.addAll(engineService.findPlayedGameByGameName(game));
-//        }
-//        List<Score> scores = new ArrayList<>();
-//        for (PlayedGame playedGame : playedGames) {
-//            scores.addAll(engineService.findScoreByPlayedGame(playedGame));
-//
-//        }
-//        List<GameUser> gameUsers = engineService.findAllGameUsers();
-//        Map<String, String> gameUsersMap = new HashMap<>();
-//        for (GameUser gu : gameUsers) {
-//            if (engineService.showGameUserScoresByPlayedGame(gu, scores) != null)
-//                gameUsersMap.put(engineService.showGameUserScoresByPlayedGame(gu, scores).getKey(), (engineService.showGameUserScoresByPlayedGame(gu, scores).getValue()));
-//
-//        }
-//        Map<String, String> finalMap = new HashMap<>(gameUsersMap);
-//        Map<String, String> sortedFinalMap = finalMap;
-//        List<Map.Entry<String, String>> entries = sortedFinalMap.entrySet()
-//                .stream()
-//                .sorted(Map.Entry.comparingByValue())
-//                .toList();
-//
-//
-//        model1.addAttribute("gameUsersMapsList", entries);
-//
-//
-//        return "score_page";
-//    }
+    @PostMapping("/filter")
+    public String showScoreByPlayedGames(@RequestParam(value = "gameList", required = false) List<Game> games,
+                                         Model model,
+                                         Model model1) {
+        if(games == null){
+            return "redirect:/score_page";
+        }
+        model.addAttribute("games", engineService.findAllGames());
+        List<PlayedGame> playedGames = new ArrayList<>();
+        for (Game game : games) {
+            playedGames.addAll(engineService.findPlayedGameByGameName(game));
+        }
+        List<Score> scores = new ArrayList<>();
+        for (PlayedGame playedGame : playedGames) {
+            scores.addAll(engineService.findScoreByPlayedGame(playedGame));
+
+        }
+        List<GameUser> gameUsers = engineService.findAllGameUsers();
+        Map<String, String> gameUsersMap = new HashMap<>();
+        for (GameUser gu : gameUsers) {
+            if (engineService.showGameUserScoresByPlayedGame(gu, scores) != null)
+                gameUsersMap.put(engineService.showGameUserScoresByPlayedGame(gu, scores).getKey(), (engineService.showGameUserScoresByPlayedGame(gu, scores).getValue()));
+
+        }
+        Map<String, String> finalMap = new HashMap<>(gameUsersMap);
+        Map<String, String> sortedFinalMap = finalMap;
+        List<Map.Entry<String, String>> entries = sortedFinalMap.entrySet()
+                .stream()
+                .sorted(Map.Entry.comparingByValue())
+                .toList();
+
+
+        model1.addAttribute("gameUsersMapsList", entries);
+
+
+        return "score_page";
+    }
 }
