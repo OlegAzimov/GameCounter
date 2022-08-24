@@ -14,8 +14,6 @@
     <name>MyGameApp</name>
     <description>MyGameApp</description>
     <properties>
-        <maven.compiler.target>1.8</maven.compiler.target>
-        <maven.compiler.source>1.8</maven.compiler.source>
         <java.version>17</java.version>
     </properties>
     <dependencies>
@@ -60,11 +58,22 @@
             <scope>test</scope>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.openjfx/javafx-base -->
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-base</artifactId>
+            <version>20-ea+1</version>
+        </dependency>
         <!-- https://mvnrepository.com/artifact/com.heroku.sdk/heroku-maven-plugin -->
         <dependency>
             <groupId>com.heroku.sdk</groupId>
             <artifactId>heroku-maven-plugin</artifactId>
             <version>3.0.4</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-compiler-plugin -->
+        <dependency>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>3.10.1</version>
         </dependency>
 
     </dependencies>
@@ -79,8 +88,8 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <source>11</source>
-                    <target>11</target>
+                    <source>1.8</source>
+                    <target>1.8</target>
                 </configuration>
             </plugin>
         </plugins>
